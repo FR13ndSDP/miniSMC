@@ -13,8 +13,12 @@ subroutine smc()
   use threadbox_module
   use time_module
   use variables_module
-
+  use write_file
   implicit none
+
+  integer :: lo(3), hi(3)
+  double precision, pointer, dimension(:,:,:,:) :: up
+  real(dp_t) :: x,y,z
 
   integer :: init_step, istep, ioproc
 
@@ -36,6 +40,9 @@ subroutine smc()
   call initialize_from_scratch(la,dt,courno,dx,U)
 
   call build_smcdata(la)
+
+  lo = lwb(get_box(U,1))
+  hi = upb(get_box(U,1))
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! print processor and grid info
@@ -81,6 +88,7 @@ subroutine smc()
            call flush(6)
         end if
 
+      !   if(mod(istep, 10) == 0) call write_val(dataptr(U, 1), istep, dx, lo, hi)
         ! have we reached the stop time?
         if (stop_time >= 0.d0) then
            if (time >= stop_time) then
