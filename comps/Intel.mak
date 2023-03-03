@@ -9,17 +9,17 @@
       CC     := mpiicc
     endif
 
-    #FFLAGS   = -module $(mdir) -I $(mdir)
-    #F90FLAGS = -module $(mdir) -I $(mdir)
+    FFLAGS   = -module $(mdir) -I $(mdir)
+    F90FLAGS = -module $(mdir) -I $(mdir)
     CFLAGS   = -std=c99
 
     ifdef OMP
-      FFLAGS   += -openmp -openmp-report2 -g -debug inline-debug-info -parallel-source-info=2 -align array64byte -opt-assume-safe-padding -opt-streaming-cache-evict=0
-      F90FLAGS += -openmp -openmp-report2 -g -debug inline-debug-info -parallel-source-info=2  -align array64byte -opt-assume-safe-padding -opt-streaming-cache-evict=0
-      CFLAGS   += -openmp -openmp-report2 -g -debug inline-debug-info -parallel-source-info=2  -opt-assume-safe-padding -opt-streaming-cache-evict=0
-      #FFLAGS   +=  -qopenmp -qopt-report=5 -qopt-report-file=myopts.txt -g -debug inline-debug-info -parallel-source-info=2 
-      #F90FLAGS +=   -qopenmp -qopt-report=5 -qopt-report-file=myopts.txt -g -debug inline-debug-info -parallel-source-info=2 
-      #CFLAGS   +=  -qopenmp -qopt-report=5 -qopt-report-file=myopts.txt -g -debug inline-debug-info -parallel-source-info=2 
+      # FFLAGS   += -openmp -openmp-report2 -g -debug inline-debug-info -parallel-source-info=2 -align array64byte -opt-assume-safe-padding -opt-streaming-cache-evict=0
+      # F90FLAGS += -openmp -openmp-report2 -g -debug inline-debug-info -parallel-source-info=2  -align array64byte -opt-assume-safe-padding -opt-streaming-cache-evict=0
+      # CFLAGS   += -openmp -openmp-report2 -g -debug inline-debug-info -parallel-source-info=2  -opt-assume-safe-padding -opt-streaming-cache-evict=0
+      FFLAGS   +=  -qopenmp
+      F90FLAGS +=   -qopenmp
+      CFLAGS   +=  -qopenmp
     endif
 
     ifdef MIC

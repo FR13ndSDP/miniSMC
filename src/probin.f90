@@ -79,7 +79,7 @@ module runtime_init_module
   namelist /probin/ tb_blocksize_y
   namelist /probin/ tb_blocksize_z
 
-  private
+  ! private
 
   public :: probin
 
